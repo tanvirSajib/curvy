@@ -9,7 +9,11 @@
 	"description": "Curvy shaped dividers to make dividing page content more interesting.",
 	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"color": {
+			"text": true,
+			"background": true
+		}
 	},
 	"textdomain": "blockylicious",
 	"editorScript": "file:./index.js",
