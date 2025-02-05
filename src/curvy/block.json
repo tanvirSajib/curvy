@@ -12,7 +12,11 @@
 		"html": false,
 		"color": {
 			"text": true,
-			"background": true
+			"background": true,
+			"link": true
+		},
+		"spacing": {
+			"padding": true
 		}
 	},
 	"textdomain": "blockylicious",
@@ -21,9 +25,18 @@
 	"style": "file:./style-index.css",
 	"viewScript": "file:./view.js",
 	"attributes": {
+		"style":{
+			"type": "object",
+			"default":{
+				"color":{
+					"background":"#ec4899"
+				}
+			}
+		},
 		"enableTopCurve":{
 			"type": "boolean",
 			"default": true
 		}
 	}
+	
 }
