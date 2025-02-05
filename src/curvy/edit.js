@@ -3,16 +3,20 @@ import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import './editor.scss';
 import { PanelBody, ToggleControl } from '@wordpress/components';
 import metadata from './block.json';
+import { Curve } from './components/Curve';
 
 
 export default function Edit({ attributes, setAttributes }) {
 	const { enableTopCurve } = attributes;
+	const {className, ...blockProps} = useBlockProps();
  	
 	return (
-		<>		
-		<p { ...useBlockProps() }>
-			{ __( 'Curvy – hello from the editor!', metadata.textdomain ) }
-		</p>
+		<>	
+		<section className={`${className} alignfull`} {...blockProps}>
+			{enableTopCurve && <Curve />  }	 
+		</section>
+		
+		
 
 		<InspectorControls>
 			<PanelBody title={__("Top Curve", metadata.textdomain)}>
