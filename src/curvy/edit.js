@@ -5,7 +5,9 @@ import { PanelBody, ToggleControl } from '@wordpress/components';
 import metadata from './block.json';
 
 
-export default function Edit() {
+export default function Edit({ attributes, setAttributes }) {
+	const { enableTopCurve } = attributes;
+ 	
 	return (
 		<>		
 		<p { ...useBlockProps() }>
@@ -15,7 +17,10 @@ export default function Edit() {
 		<InspectorControls>
 			<PanelBody title={__("Top Curve", metadata.textdomain)}>
 				<div style={{display:"flex"}}>
-					<ToggleControl />
+					<ToggleControl 
+					checked={ enableTopCurve }
+					onChange={(isChecked) => setAttributes( { enableTopCurve : isChecked } )} 
+					/>
 					<span>{ __("Enable Top Curve", metadata.textdomain) }</span>
 				</div>
 			</PanelBody>
