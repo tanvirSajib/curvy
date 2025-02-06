@@ -9,7 +9,7 @@ import BottomCurveSettings from './components/BottomCurveSettings';
 
 
 export default function Edit({ attributes, setAttributes }) {
-	const { enableTopCurve, topWidth, topHeight, topFlipX, topFlipY, topColor, enableBottomCurve } = attributes;
+	const { enableTopCurve, topWidth, topHeight, topFlipX, topFlipY, topColor, enableBottomCurve,bottomFlipX,bottomFlipY,bottomHeight,bottomWidth,bottomColor } = attributes;
 	const {className, ...blockProps} = useBlockProps();
 	 	
 	return (
@@ -21,6 +21,15 @@ export default function Edit({ attributes, setAttributes }) {
 			height={topHeight} 
 			width={topWidth} 
 			color={topColor}
+			/>  }
+
+			{enableBottomCurve && <Curve
+			isBottom
+			flipX={bottomFlipX}
+			flipY={bottomFlipY} 
+			height={bottomHeight} 
+			width={bottomWidth} 
+			color={bottomColor}
 			/>  }	 
 		</section>	
 		
