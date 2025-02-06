@@ -1,17 +1,17 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, InspectorControls, ColorPalette,  } from '@wordpress/block-editor';
+import { useBlockProps, InspectorControls,  } from '@wordpress/block-editor';
 import './editor.scss';
-import { PanelBody, ToggleControl, RangeControl, } from '@wordpress/components';
+import { PanelBody, ToggleControl, } from '@wordpress/components';
 import metadata from './block.json';
 import { Curve } from './components/Curve';
+import TopCurveSettings from './components/TopCurveSettings';
+import BottomCurveSettings from './components/BottomCurveSettings';
 
 
 export default function Edit({ attributes, setAttributes }) {
-	const { enableTopCurve, topWidth, topHeight, topFlipX, topFlipY, topColor } = attributes;
+	const { enableTopCurve, topWidth, topHeight, topFlipX, topFlipY, topColor, enableBottomCurve } = attributes;
 	const {className, ...blockProps} = useBlockProps();
-
-	console.log( className );
- 	
+	 	
 	return (
 		<>	
 		<section className={`${className} alignfull`} {...blockProps}>
@@ -22,8 +22,7 @@ export default function Edit({ attributes, setAttributes }) {
 			width={topWidth} 
 			color={topColor}
 			/>  }	 
-		</section>
-		
+		</section>	
 		
 
 		<InspectorControls>
@@ -36,50 +35,22 @@ export default function Edit({ attributes, setAttributes }) {
 					<span>{ __("Enable Top Curve", metadata.textdomain) }</span>
 				</div>
 
-				<RangeControl 
-				label={__("Width", metadata.textdomain)} 
-				min={100}
-				max={300}
-				value={ topWidth || 100 }
-				onChange={(newValue)=>{
-					setAttributes({topWidth: parseInt(newValue)})
-				}}
-				/>
+				{enableTopCurve && <TopCurveSettings attributes={attributes} setAttributes={setAttributes} />}
+				
 
-				<RangeControl 
-				label={__("Height", metadata.textdomain)} 
-				min={0}
-				max={200}
-				value={ topHeight }
-				onChange={(newValue)=>{
-					setAttributes({topHeight: parseInt(newValue)})
-				}}
-				/>
+			</PanelBody>
 
-
+			<PanelBody title={__("Bottom Curve", metadata.textdomain)}>
 				<div style={{display:"flex"}}>
 					<ToggleControl 
-					checked={ topFlipX }
-					onChange={(isChecked) => setAttributes( { topFlipX : isChecked } )} 
+					checked={ enableBottomCurve }
+					onChange={(isChecked) => setAttributes( { enableBottomCurve : isChecked } )} 
 					/>
-					<span>{ __("Flip Horizontaly", metadata.textdomain) }</span>
+					<span>{ __("Enable Bottom Curve", metadata.textdomain) }</span>
 				</div>
 
-				<div style={{display:"flex"}}>
-					<ToggleControl 
-					checked={ topFlipY }
-					onChange={(isChecked) => setAttributes( { topFlipY : isChecked } )} 
-					/>
-					<span>{ __("Flip Vertically", metadata.textdomain) }</span>
-				</div>
-
-				<div>
-					<label>{__("Curvy Color", metadata.textdomain)}</label>
-					<ColorPalette 
-						value={topColor}
-						onChange={(newValue) => setAttributes({topColor: newValue})}
-					/>
-				</div>
+				{enableBottomCurve && <BottomCurveSettings attributes={attributes} setAttributes={setAttributes} />}
+				
 
 			</PanelBody>
 		</InspectorControls>
