@@ -15,7 +15,12 @@ export default function Edit({ attributes, setAttributes }) {
 	return (
 		<>	
 		<section className={`${className} alignfull`} {...blockProps}>
-			{enableTopCurve && <Curve height={topHeight} width={topWidth} />  }	 
+			{enableTopCurve && <Curve
+			flipX={topFlipX}
+			flipY={topFlipY} 
+			height={topHeight} 
+			width={topWidth} 
+			/>  }	 
 		</section>
 		
 		
