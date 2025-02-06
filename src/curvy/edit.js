@@ -7,7 +7,7 @@ import { Curve } from './components/Curve';
 
 
 export default function Edit({ attributes, setAttributes }) {
-	const { enableTopCurve, topWidth, topHeight } = attributes;
+	const { enableTopCurve, topWidth, topHeight, topFlipX, topFlipY } = attributes;
 	const {className, ...blockProps} = useBlockProps();
 
 	console.log( className );
@@ -49,6 +49,24 @@ export default function Edit({ attributes, setAttributes }) {
 					setAttributes({topHeight: parseInt(newValue)})
 				}}
 				/>
+
+
+				<div style={{display:"flex"}}>
+					<ToggleControl 
+					checked={ topFlipX }
+					onChange={(isChecked) => setAttributes( { topFlipX : isChecked } )} 
+					/>
+					<span>{ __("Flip Horizontaly", metadata.textdomain) }</span>
+				</div>
+
+				<div style={{display:"flex"}}>
+					<ToggleControl 
+					checked={ topFlipY }
+					onChange={(isChecked) => setAttributes( { topFlipY : isChecked } )} 
+					/>
+					<span>{ __("Flip Vertically", metadata.textdomain) }</span>
+				</div>
+
 			</PanelBody>
 		</InspectorControls>
 		</>
