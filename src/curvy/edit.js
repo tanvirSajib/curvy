@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, InspectorControls,  } from '@wordpress/block-editor';
+import { useBlockProps, InspectorControls, InnerBlocks,  } from '@wordpress/block-editor';
 import './editor.scss';
 import { PanelBody, ToggleControl, } from '@wordpress/components';
 import metadata from './block.json';
@@ -22,7 +22,7 @@ export default function Edit({ attributes, setAttributes }) {
 			width={topWidth} 
 			color={topColor}
 			/>  }
-
+			<InnerBlocks />
 			{enableBottomCurve && <Curve
 			isBottom
 			flipX={bottomFlipX}
