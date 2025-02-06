@@ -1,13 +1,13 @@
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import { useBlockProps, InspectorControls, ColorPalette,  } from '@wordpress/block-editor';
 import './editor.scss';
-import { PanelBody, ToggleControl, RangeControl } from '@wordpress/components';
+import { PanelBody, ToggleControl, RangeControl, } from '@wordpress/components';
 import metadata from './block.json';
 import { Curve } from './components/Curve';
 
 
 export default function Edit({ attributes, setAttributes }) {
-	const { enableTopCurve, topWidth, topHeight, topFlipX, topFlipY } = attributes;
+	const { enableTopCurve, topWidth, topHeight, topFlipX, topFlipY, topColor } = attributes;
 	const {className, ...blockProps} = useBlockProps();
 
 	console.log( className );
@@ -20,6 +20,7 @@ export default function Edit({ attributes, setAttributes }) {
 			flipY={topFlipY} 
 			height={topHeight} 
 			width={topWidth} 
+			color={topColor}
 			/>  }	 
 		</section>
 		
@@ -70,6 +71,14 @@ export default function Edit({ attributes, setAttributes }) {
 					onChange={(isChecked) => setAttributes( { topFlipY : isChecked } )} 
 					/>
 					<span>{ __("Flip Vertically", metadata.textdomain) }</span>
+				</div>
+
+				<div>
+					<label>{__("Curvy Color", metadata.textdomain)}</label>
+					<ColorPalette 
+						value={topColor}
+						onChange={(newValue) => setAttributes({topColor: newValue})}
+					/>
 				</div>
 
 			</PanelBody>
